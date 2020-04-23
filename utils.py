@@ -74,10 +74,13 @@ def check_requirements(req):
         try:
             output, error = Popen([n, '--version'], stdout=PIPE,
                                   stderr=PIPE).communicate()
-            installed_version = re.findall('(\d+\.\d+\.\d+)',
+            installed_version = re.findall('(\d+\.\d+(?:\.\d+|))',
                                            (output + error).decode('utf-8'))[0]
         except:
             return False
+
+        if installed_version.count('.') == 2:
+            installed_version += '.0'
 
         if semver_compare(installed_version, v) == -1:
             return False
