@@ -1,3 +1,7 @@
+from subprocess import Popen, PIPE
+import re
+
+
 def step(title, level=0, body=[]):
     '''
     Print nicely formatted description of the step.
@@ -49,3 +53,30 @@ def semver_compare(a, b):
         if na < nb:
             return -1
     return 0
+
+
+def check_requirements(req):
+    '''
+    Check whether system has all required packages installed or not.
+
+        Parameters:
+            req (<string, string>{}): Map of package's name and version
+        
+        Returns:
+            True (bool): all requirements satisfied
+            False (bool): failed to satisfy one or more requirements
+    '''
+    for (n, v) in req.items():
+        installed_version = None
+
+        try:
+            output, error = Popen([n, '--version'], stdout=PIPE,
+                                  stderr=PIPE).communicate()
+            installed_version = re.findall('(\d+\.\d+\.\d+)',
+                                           (output + error).decode('utf-8'))[0]
+        except:
+            return False
+
+        if semver_compare(installed_version, v) == -1:
+            return False
+    return True
