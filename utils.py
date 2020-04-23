@@ -1,5 +1,7 @@
 from subprocess import Popen, PIPE
 import re
+from __future__ import print_function
+import sys
 
 
 def step(title, level=0, body=[]):
@@ -80,3 +82,10 @@ def check_requirements(req):
         if semver_compare(installed_version, v) == -1:
             return False
     return True
+
+
+def eprint(*args, **kwargs):
+    '''
+    Print string to stderr.
+    '''
+    print(*args, file=sys.stderr, **kwargs)
