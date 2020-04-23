@@ -1,6 +1,7 @@
 from subprocess import Popen, PIPE
 import re
 import sys
+import os
 
 
 def step(title, level=0, body=[]):
@@ -108,3 +109,13 @@ def cmd(c):
     except:
         return str()
     return output
+
+
+def home():
+    '''
+    Get current user's home directory.
+
+        Returns:
+            path (string): home directory path
+    '''
+    return os.path.expanduser('~')
