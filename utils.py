@@ -22,3 +22,30 @@ def step(title, level=0, body=[]):
         for line in body:
             print(spaces + line)
         print()
+
+
+def semver_compare(a, b):
+    '''
+    Compare two semantic version strings.
+
+        Parameters:
+            a (string): Semantic version string
+            b (string): Semantic version string
+        
+        Returns:
+            -1 (int): a is less than b
+            0 (int): a is equal to b
+            1 (int): a is greater than b
+    '''
+    pa = a.split('.')
+    pb = b.split('.')
+
+    for i in range(3):
+        na = int(pa[i])
+        nb = int(pb[i])
+
+        if na > nb:
+            return 1
+        if na < nb:
+            return -1
+    return 0
