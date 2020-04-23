@@ -5,6 +5,7 @@ def install():
     step('Cloning flutter from github',
          body=[
              'Run "flutter doctor" to install the engine\n',
+             'Add ~/.flutter-sdk/bin to your path\n',
              'You might need to restart your terminal'
          ])
     cmd([
