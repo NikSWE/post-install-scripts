@@ -88,3 +88,23 @@ def eprint(title):
     Print string to stderr.
     '''
     print('[x] ' + title, file=sys.stderr)
+
+
+def cmd(c):
+    '''
+    Execute the shell command.
+
+        Parameters:
+            c (string[]): Command
+        
+        Returns:
+            '' (string): if the execution was unsuccessful
+            output (string): if the execution was successful
+    '''
+    output = None
+    try:
+        output = Popen(c, stdout=PIPE,
+                       stderr=PIPE).communicate()[0].decode('utf-8')
+    except:
+        return str()
+    return output
