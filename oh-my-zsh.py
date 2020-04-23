@@ -2,12 +2,15 @@ from utils import *
 
 
 def install():
-    step('Installing oh-my-zsh',
-         body=['Restart your terminal for changes to take effect'])
+    step('Cloning oh-my-zsh from github',
+         body=[
+             'Run this to change your default shell', 'chsh -s $(which zsh)\n',
+             'Make sure to update your .zshrc\n',
+             'Download template: https://del.dog/zsh-template'
+         ])
     cmd([
-        'sh', '-c',
-        '"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"',
-        '""', '--unattended'
+        'git', 'clone', 'https://github.com/ohmyzsh/ohmyzsh.git',
+        f'{home()}/.oh-my-zsh'
     ])
 
 
