@@ -1,6 +1,5 @@
 from subprocess import Popen, PIPE
 import re
-from __future__ import print_function
 import sys
 
 
@@ -84,8 +83,8 @@ def check_requirements(req):
     return True
 
 
-def eprint(*args, **kwargs):
+def eprint(title):
     '''
     Print string to stderr.
     '''
-    print(*args, file=sys.stderr, **kwargs)
+    print('[x] ' + title, file=sys.stderr)
