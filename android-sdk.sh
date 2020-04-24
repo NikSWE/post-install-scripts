@@ -1,4 +1,4 @@
-sudo pacman -S android-sdk
+yay -S android-sdk
 chown -R $(whoami):$(whoami) /opt/android-sdk
 mkdir $HOME/.android
 touch $HOME/.android/repositories.cfg
