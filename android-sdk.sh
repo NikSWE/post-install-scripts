@@ -1,5 +1,5 @@
 yay -S android-sdk
-chown -R $(whoami):$(whoami) /opt/android-sdk
+sudo chown -R $(whoami):$(whoami) /opt/android-sdk
 mkdir $HOME/.android
 touch $HOME/.android/repositories.cfg
 export PATH=$PATH:/opt/android-sdk/tools/bin
